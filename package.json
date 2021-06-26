@@ -4,8 +4,8 @@
     "description": "That's a base to make your own discord bot",
     "main": "index.js",
     "dependencies": {
-        "discord.js": "^12.5.1",
-        "dotenv": "^8.2.0"
+        "discord.js": "^12.5.3",
+        "dotenv": "^8.6.0"
     },
     "devDependencies": {},
     "scripts": {

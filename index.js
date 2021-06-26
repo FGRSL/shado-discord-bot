@@ -7,7 +7,7 @@ client.login(process.env.TOKEN);
 
 /**
  * A forma com que registro o prefix do bot está em hardcode, mas é só adicionar um arquivo de configuração caso desejar.
- */
+ */""
 const BOT_PREFIX = "s!";
 
 /**
@@ -88,7 +88,7 @@ const commands = new Map();
  */
 const preCommands = [
     require("./src/commands/CommandAvatar.js"),
-    require("./src/commands/CommandUserinfo.js")
+    require("./src/commands/CommandUserinfo.js"),
 ];
 
 function registerCommands() {
