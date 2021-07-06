@@ -62,6 +62,23 @@ function guildMemberUpdate(client, oldGuildMember, newGuildMember) {
  */
 function guildMemberRemove(client, guildMember) {
     console.log("[-] Usuário '" + guildMember.user.tag + "' saiu do servidor '" + guildMember.guild.id + "'");
+
+    let channel = client.channels.cache.get("843948919343808524");
+
+    let embed = new Discord.MessageEmbed()
+        .setColor('#f93e54')
+        .setAuthor(guildMember.user.tag, guildMember.user.displayAvatarURL())
+        .setTitle(`Deixou o servidor...`)
+        .setImage('https://i.pinimg.com/originals/65/ae/27/65ae270df87c3c4adcea997e48f60852.gif')
+        .setDescription('Perdemos um jogador... Arrivederci')
+        .setThumbnail(guildMember.user.displayAvatarURL({
+            dynamic: true,
+            size: 2048
+        }))
+        .setFooter('ID do usuário: ' + guildMember.user.id)
+        .setTimestamp();
+    channel.send(embed);
+
 }
 
 module.exports = { guildMemberRemove, guildMemberAdd, guildMemberUpdate };

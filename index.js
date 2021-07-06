@@ -89,6 +89,7 @@ const commands = new Map();
 const preCommands = [
     require("./src/commands/CommandAvatar.js"),
     require("./src/commands/CommandUserinfo.js"),
+    require("./src/commands/CommandRoll.js")
 ];
 
 function registerCommands() {
@@ -168,4 +169,4 @@ function handleCommand(client, guild, message) {
             }
         }
     }
-}
+} 
