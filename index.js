@@ -89,7 +89,8 @@ const commands = new Map();
 const preCommands = [
     require("./src/commands/CommandAvatar.js"),
     require("./src/commands/CommandUserinfo.js"),
-    require("./src/commands/CommandRoll.js")
+    require("./src/commands/CommandRoll.js"),
+    require("./src/commands/CommandBodyDice"),
 ];
 
 function registerCommands() {
