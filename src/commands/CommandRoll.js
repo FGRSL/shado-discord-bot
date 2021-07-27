@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { getCooldown, addCooldown, removeExpireds, removeCooldown } = require("../server/CooldownUtils");
 
 module.exports = {
     name: "roll",
@@ -17,81 +18,79 @@ module.exports = {
         let maxRolls = 20;
         if (args.length >= 1) {
 
-            //verificando se o primeiro argumenta inicia-se com a letra "d"
-            if (args[0].toLowerCase().startsWith("d")) {
-                /*
-                    removendo letra "d" e adicionando um espaço em branco no lugar.
-                */
+            if (Number.isInteger(Number.parseInt(args[0].charAt(0)))) {
+                rolls = Number.parseInt(args[0][0]);
+
+                args[0] = args[0].replace(rolls + "d", "");
+
+            } else if (args[0].toLowerCase().startsWith("d")) {
                 args[0] = args[0].replace("d", "");
-                if (Number.isInteger(Number.parseInt(args[0]))) {
-                    maxRolls = Number.parseInt(args[0]);
-                    /*
 
-                    */
+            }
+            if (args.length > 1) {
 
-                }
-                if (args.length >= 2) {
-                    if (Number.isInteger(Number.parseInt(args[1]))) {
-                        rolls = Number.parseInt(args[1]);
-                        if (rolls >= 20) {
-                            let message_context = new Discord.MessageEmbed()
-                                .setAuthor(user.tag, user.displayAvatarURL)
-                                .setDescription(` ${user}, Rolagem de dados invalida!! Rolagem maxima de 20 dados simultaneos...`);
-                            this.rolls = 20;
-                            channel.send(message_context);
-                        } else {
-                            if (Number.isInteger(Number.parseInt(args[1]))) {
-                                rolls = Number.parseInt(args[1]);
-                                if (rolls > 20) {
-                                    let message_context = new Discord.MessageEmbed()
-                                        .setAuthor(user, user.displayAvatarURL)
-                                        .setDescription(` ${user}, Rolagem de dados invalida!! Rolagem maxima de 20 dados simultaneos...`);
-
-                                    this.rolls = 20;
-                                    channel.send(message_context);
-                                }
-                            }
-                        }
-                    }
+                if (args[1].startsWith("+")) {
+                    args[1] = args[1].replace("+", "");
+                    incrementResult = Number.parseInt(args[1]);
                 }
             }
-            if (rolls > 20) {
-                this.rolls = 20;
-            } else {
-
-                let RollingDicesMensage = new Discord.MessageEmbed()
-                    .setAuthor(user.tag, user.displayAvatarURL())
-                    .setColor("#f93e54")
-                    .setDescription(`Rolando os dados....`)
-                    .setFooter('ID do usuário: ' + user.id)
-                    .setTimestamp();
-
-                channel.send(RollingDicesMensage).then(roll => {
-                    let result = "";
-                    console.log("rolls: " + rolls);
-                    for (let i = 0; i < rolls; i++) {
-                        let random = Math.floor(Math.random() * maxRolls + 1);
-
-                        if (random === 0) {
-                            result += " | " + Math.floor(Math.random() * maxRolls + 1);
-                        } else {
-
-                            result += " | " + random;
-                        }
-                    }
-                    result = result.replace(" | ", "");
-
-                    let resultMensage = new Discord.MessageEmbed()
-                        .setAuthor(user.tag, user.displayAvatarURL())
-                        .setTitle("RESULTADO DOS DADOS")
-                        .setColor("#f93e54")
-                        .setDescription(`Os resultados da rolagem de dados de ${user} são ` + result)
-                        .setFooter('ID do usuário: ' + user.id)
-                        .setTimestamp();
-
-                    roll.edit(resultMensage);
-                });
-            }
+            RollingDices(user, channel, rolls, maxRolls, incrementResult);
+            //verificando se o primeiro argumenta inicia-se com a letra "d"
         }
+    }
+}
+function RollingDices(user, channel, rolls, maxRolls, incrementResult) {
+
+    if (incrementResult == null) {
+        incrementResult = 0;
+        console.log("Valor a ser somado: " + incrementResult);
+    }
+    if (rolls > 20) {
+        this.rolls = 20;
+    } else {
+
+        let RollingDicesMensage = new Discord.MessageEmbed()
+            .setAuthor(user.tag, user.displayAvatarURL())
+            .setColor("#f93e54")
+            .setDescription(`Rolando os dados....`)
+            .setFooter('ID do usuário: ' + user.id)
+            .setTimestamp();
+
+
+        channel.send(RollingDicesMensage).then(roll => {
+            let result = "";
+            console.log("rolls: " + rolls);
+            console.log("increment: " + incrementResult);
+            for (let i = 0; i < rolls; i++) {
+                let random = Math.floor(Math.random() * maxRolls + 1);
+                console.log("Random no increment: " + random);
+                random += incrementResult
+                console.log("Result with increment: " + random);
+
+                if (random === 0) {
+                    result += " | " + Math.floor(Math.random() * maxRolls + 1);
+                } else {
+
+                    result += " | " + random;
+                }
+            }
+            
+            result = result.replace(" | ", "");
+
+            if (removeCooldown("mensageSend", "message")) {
+                return;
+            }
+            addCooldown("messageSend", "message", 10);
+
+            let resultMensage = new Discord.MessageEmbed()
+                .setAuthor(user.tag, user.displayAvatarURL())
+                .setTitle("RESULTADO DOS DADOS")
+                .setColor("#f93e54")
+                .setDescription(`Os resultados da rolagem de dados de ${user} são ` + result)
+                .setFooter('ID do usuário: ' + user.id)
+                .setTimestamp();
+
+            roll.edit(resultMensage);
+        });
     }
 }

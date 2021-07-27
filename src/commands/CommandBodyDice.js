@@ -13,16 +13,15 @@ module.exports = {
      * @returns {void}
      */
     execute: async function (client, guildMember, user, channel, args) {
-        let humamParts = ["braço esquerdo", "braço direito", "perna esquerda", "perna direita", "coluna", "cabeça", "mão esquerda"];
-        if (args.length >= 1) {
+        let humamParts = ["Braço esquerdo", "Braço direito", "Perna esquerda", "Perna direita", "Coluna", "Cabeça", "Torax"];
+        if (args.length >= 0) {
 
-            console.log(args.length);
-            
             let targetPart = humamParts[Math.floor(Math.random() * humamParts.length)]
+
             let partResultMensage = new Discord.MessageEmbed()
                 .setAuthor(user.tag, user.avatarURL())
                 .setTitle("PARTE DO CORPO ATINGIDA")
-                .setDescription("Parte do corpo atingida: " + "**" + targetPart + "**")
+                .setDescription("***" + targetPart + "***")
                 .setColor("#f93e54")
                 .setTimestamp();
 
