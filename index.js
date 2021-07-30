@@ -91,6 +91,9 @@ const preCommands = [
     require("./src/commands/CommandUserinfo.js"),
     require("./src/commands/CommandRoll.js"),
     require("./src/commands/CommandBodyDice"),
+    require("./src/commands/CommandCreateTable"),
+    require("./src/commands/CommandDiscord"),
+    require("./src/commands/CommandFicha"),
 ];
 
 function registerCommands() {
