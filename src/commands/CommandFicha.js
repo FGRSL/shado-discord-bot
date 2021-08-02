@@ -54,6 +54,10 @@ module.exports = {
                 ***:regional_indicator_s:abedoria***
                 ***${sabedoria}***
             `)
+            .addField("Força", forca, true)
+            .addField("Destreza", destreza, false)
+            .addField("Inteligência", inteligencia, true)
+            .addField("Constituição", constituicao, false)
             .setFooter('ID do usuário: ' + user.id)
             .setTimestamp();
         channel.send(messageEmbed);

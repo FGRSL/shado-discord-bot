@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "createSession",
-	aliases: ["creat", "cs"],
+	aliases: ["create", "cs"],
 	/**
 	 * @param {Discord.Client} client Client para manipulação de Shard's e gerenciamento de bot
 	 * @param {Discord.Guild} guild Servidor onde o comando foi executado

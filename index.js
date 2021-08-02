@@ -4,6 +4,7 @@ const app = express();
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Events } = require("./node_modules/discord.js/src/util/Constants.js");
+const api_sql = require("./apiSql.js");
 require("dotenv").config();
 
 
@@ -189,6 +190,8 @@ function handleCommand(client, guild, message) {
  *  
  */
 
+api_sql.inicialize();
+
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/html/index.html")
 
@@ -198,6 +201,8 @@ app.get("/dashboard/:nome/:botname", function(req, res){
 });
 
 app.listen(8081, function(){
-    console.log("Servidor ONLINE em local host: url: http://localhost:8081");
+    console.log("|-------------------------------------------------------------|");
+    console.log("|-Servidor web ONLINE em local host url: http://localhost:8081|");
+    console.log("|-------------------------------------------------------------|");
 });
 
