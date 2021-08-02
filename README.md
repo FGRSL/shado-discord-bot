@@ -30,9 +30,9 @@ npm install
 
  # Ferramentas de Organização
   -Organização de Atividades
-    - https://www.taskade.com/invites/T7yEAFxUej1vKbRj (Sugestão do Fabio)
+    - https://www.taskade.com/invites/T7yEAFxUej1vKbRj
   - Design WEB
-    - https://www.figma.com/ (Segestão de Roberto e Vitor)
+    - https://www.figma.com/
 
 # Layout base da programação
   - https://github.com/yLost/DiscordBOT-base (Sugestão de Lost)
