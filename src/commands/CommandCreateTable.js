@@ -34,7 +34,7 @@ module.exports = {
 				Os @Jogadores após utilizar o comando s!ficha em um dos slots criados.
 
  				Quais quer duvidas respectivos ao nosso modelo base digite s!discord para entrar em contato com os desenvolvedores utilizando s!Discord.
-			`)
+		`)
 			.setFooter('ID do usuário: ' + user.id)
 			.setTimestamp();
 		channel.send(messageEmbed);
