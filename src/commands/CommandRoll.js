@@ -39,6 +39,8 @@ module.exports = {
         }
     }
 }
+
+
 function RollingDices(user, channel, rolls, maxRolls, incrementResult) {
 
     if (incrementResult == null) {
@@ -63,9 +65,12 @@ function RollingDices(user, channel, rolls, maxRolls, incrementResult) {
             console.log("increment: " + incrementResult);
             for (let i = 0; i < rolls; i++) {
                 let random = Math.floor(Math.random() * maxRolls + 1);
-                console.log("Random no increment: " + random);
+                console.log("valor sortido: " + random);
+
                 random += incrementResult
-                console.log("Result with increment: " + random);
+
+                console.log(`valor sortido + valor a ser somado ${incrementResult}: ` + random);
+                console.log("------------------------------------------");
 
                 if (random === 0) {
                     result += " | " + Math.floor(Math.random() * maxRolls + 1);
@@ -74,13 +79,13 @@ function RollingDices(user, channel, rolls, maxRolls, incrementResult) {
                     result += " | " + random;
                 }
             }
-            
+
             result = result.replace(" | ", "");
 
             if (removeCooldown("mensageSend", "message")) {
                 return;
             }
-            addCooldown("messageSend", "message", 10);
+            addCooldown("messageSend", "message", 100);
 
             let resultMensage = new Discord.MessageEmbed()
                 .setAuthor(user.tag, user.displayAvatarURL())
