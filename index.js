@@ -1,12 +1,8 @@
-const express = require("express");
-const app = express();
-
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Events } = require("./node_modules/discord.js/src/util/Constants.js");
 const api_sql = require("./apiSql.js");
 require("dotenv").config();
-
 
 client.login(process.env.TOKEN);
 
@@ -178,31 +174,4 @@ function handleCommand(client, guild, message) {
             }
         }
     }
-}
-/**
- * @param {app.get(req, res)}    
- * Parametros de requisição e parametros de resposta(req, res)
- * req = requisição recebida
- * res = resposta ao cliente(arquivo html ou de texto);
- * @param {app.get("/")}
- *  "/" - Rota para uma pagina
- * @param {__dirname} Parametro de diretorio padrão
- *  
- */
-
-api_sql.inicialize();
-
-app.get("/", function(req, res){
-    res.sendFile(__dirname + "/html/index.html")
-
-});
-app.get("/dashboard/:nome/:botname", function(req, res){
-    res.send(req.params);
-});
-
-app.listen(8081, function(){
-    console.log("|-------------------------------------------------------------|");
-    console.log("|-Servidor web ONLINE em local host url: http://localhost:8081|");
-    console.log("|-------------------------------------------------------------|");
-});
-
+} 
