@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Events } = require("./node_modules/discord.js/src/util/Constants.js");
-const api_sql = require("./apiSql.js");
+
+
 require("dotenv").config();
 
 client.login(process.env.TOKEN);
@@ -174,4 +175,5 @@ function handleCommand(client, guild, message) {
             }
         }
     }
+    
 } 
