@@ -22,7 +22,7 @@ module.exports = {
         let carisma = 20;
         let sabedoria = 20;
 
-
+        
 
         let messageEmbed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())

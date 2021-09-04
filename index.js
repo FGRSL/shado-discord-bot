@@ -5,6 +5,7 @@ const { Events } = require("./node_modules/discord.js/src/util/Constants.js");
 
 require("dotenv").config();
 
+
 client.login(process.env.TOKEN);
 
 /**
@@ -96,6 +97,7 @@ const preCommands = [
     require("./src/commands/CommandCreateTable"),
     require("./src/commands/CommandDiscord"),
     require("./src/commands/CommandFicha"),
+    require("./src/commands/CommandRegister"),
 ];
 
 function registerCommands() {
