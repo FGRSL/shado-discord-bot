@@ -2,15 +2,13 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { Events } = require("./node_modules/discord.js/src/util/Constants.js");
 
-
 require("dotenv").config();
 
 
 client.login(process.env.TOKEN);
-
 /**
  * A forma com que registro o prefix do bot está em hardcode, mas é só adicionar um arquivo de configuração caso desejar.
- */""
+ */
 const BOT_PREFIX = "s!";
 
 /**
@@ -72,7 +70,7 @@ function listenEvents() {
             // Evento que foi declarado
             const rEvent = events[j];
 
-            if (rEvent[eventName] != null && typeof (rEvent[eventName]) == "function") {
+            if (rEvent[eventName] != null && typeof(rEvent[eventName]) == "function") {
                 // Chamando a função de acordo com o evento passando como argumento inicial o "Client" que é necessário quando utilizado Shard's
                 client.on(eventName, (...args) => {
                     rEvent[eventName].call(this, ...[client, ...args]);
@@ -98,6 +96,7 @@ const preCommands = [
     require("./src/commands/CommandDiscord"),
     require("./src/commands/CommandFicha"),
     require("./src/commands/CommandRegister"),
+    require("./src/commands/CommandModificador"),
 ];
 
 function registerCommands() {
@@ -108,11 +107,11 @@ function registerCommands() {
             const command = preCommands[i];
 
             // Verificamos se o arquivo importado tem um valor "name" exportado que será registrado como o nome do comando
-            if (command.name == null || typeof (command.name) != "string") {
+            if (command.name == null || typeof(command.name) != "string") {
                 continue;
             }
             // E se há a função "execute" onde terá toda a ação de execução do comando
-            if (command.execute == null || typeof (command.execute) != "function") {
+            if (command.execute == null || typeof(command.execute) != "function") {
                 console.log("[Command] The '" + command.name + "' hasn't execute function!");
             }
             commands.set(command.name.toLowerCase(), command);
@@ -177,5 +176,5 @@ function handleCommand(client, guild, message) {
             }
         }
     }
-    
-} 
+
+}

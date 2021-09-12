@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const { application } = require("express");
 const fetch = require("node-fetch");
+const RestService = require("../rest/RestService");
 
 
 module.exports = {
@@ -14,7 +14,9 @@ module.exports = {
      * @param {Array<String>} args Conteúdo que foi passado ao executar o comando
      * @returns {void}
      */
-    execute: async function (client, guild, user, channel, args) {
-                
+    execute: async function(client, guild, user, channel, args) {
+        const result = await RestService.execute("GET", "/api/v1/users/?"); //id do usuario na ?
+
+        console.log(result);
     }
 }
