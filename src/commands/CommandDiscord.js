@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: "discord",
-    aliases: ["ds",],
+    aliases: ["ds", ],
     /**
      * @param {Discord.Client} client Client para manipulação de Shard's e gerenciamento de bot
      * @param {Discord.Guild} guild Servidor onde o comando foi executado
@@ -11,7 +11,7 @@ module.exports = {
      * @param {Array<String>} args Conteúdo que foi passado ao executar o comando
      * @returns {void}
      */
-    execute: async function (client, guild, user, channel, args) {
+    execute: async function(client, guild, user, channel, args) {
         let DiscordMensage = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
             .setColor("#f93e54")
